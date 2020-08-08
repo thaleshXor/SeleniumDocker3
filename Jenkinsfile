@@ -7,7 +7,7 @@ pipeline {
       }
     }
 
-    stage('') {
+    stage('Execution') {
       agent {
         docker {
           image '87619f0977fc'
