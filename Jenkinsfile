@@ -15,7 +15,7 @@ pipeline {
 
       }
       steps {
-        sh 'mvn test -DvarTestng="testng1.xml" -DBROWSER="chrome"'
+        sh 'sudo mvn test -DvarTestng="testng1.xml" -DBROWSER="chrome"'
       }
     }
 
