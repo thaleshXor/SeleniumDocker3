@@ -8,14 +8,10 @@ pipeline {
     }
 
     stage('execution') {
-      agent {
-        docker {
-          image '87619f0977fc'
-        }
 
-      }
       steps {
-        sh 'sudo mvn test -DvarTestng="testng1.xml" -DBROWSER="chrome"'
+        sh 'docker run -it -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:latest
+        sh 'mvn test -DvarTestng="testng1.xml" -DBROWSER="chrome"'
       }
     }
 
