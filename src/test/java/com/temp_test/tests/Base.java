@@ -33,7 +33,8 @@ public class Base {
 		System.out.println("performing initial setup of WebDriver");
         //String browserName=name;
         if(browserName.equalsIgnoreCase("CHROME")) {
-        	String completeUrl="http://localhost:4444/wd/hub";
+        	/*
+		String completeUrl="http://localhost:4444/wd/hub";
         	DesiredCapabilities dc=new DesiredCapabilities();
 	        dc.setBrowserName("chrome");
 
@@ -41,8 +42,19 @@ public class Base {
 	        options.merge(dc);
 	        
 	        driver=new RemoteWebDriver(new URL(completeUrl), options);
+		*/
+		WebDriverManager.chromedriver().setup();
+		DesiredCapabilities dc=new DesiredCapabilities();
+                dc.setBrowserName("chrome");
+
+                ChromeOptions options=new ChromeOptions();
+		options.addArguments("--headless");
+                options.merge(dc);
+		driver=new ChromeDriver(options);
+
         }
         else if(browserName.equalsIgnoreCase("FIREFOX")) {
+		/*
         	String completeUrl="http://localhost:4545/wd/hub";
         	DesiredCapabilities dc=new DesiredCapabilities();
 	        dc.setBrowserName("firefox");
@@ -51,7 +63,17 @@ public class Base {
 	        options.merge(dc);  
 	        
 	        driver=new RemoteWebDriver(new URL(completeUrl), options);
-        	
+        	*/
+
+                WebDriverManager.chromedriver().setup();
+                DesiredCapabilities dc=new DesiredCapabilities();
+                dc.setBrowserName("firefox");
+
+                FirefoxOptions options=new FirefoxOptions();
+                options.addArguments("--headless");
+                options.merge(dc);
+                driver=new FirefoxDriver(options);
+
         }
         
         this.driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
