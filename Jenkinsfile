@@ -20,7 +20,7 @@ pipeline {
 
         stage('firefox') {
           steps {
-            node(label: 'ubuntu') {
+            node(label: 'master') {
               sh 'test -DBROWSER=firefox -DvarTestng=testng.xml'
             }
 
