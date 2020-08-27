@@ -1,6 +1,7 @@
 package com.temp_test.tests;
 
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -9,69 +10,44 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Base {
-	
     protected WebDriver driver;
-	String browserName=System.getProperty("BROWSER");
-    
-	
-    //-------------------------------------------RUN ON  SERVER------------------------------------------
-	//@Parameters({"browserName"})
+	//String browserName=System.getProperty("BROWSER");
+    String completeURL="http://104.155.149.14:4444/wd/hub";
+    //-------------------------------------------RUN ON  Agent Node------------------------------------------
+   
+    @Parameters({"browserName"})
     @BeforeMethod
-	public void initialSetUp1() throws MalformedURLException {
-    	
-		System.out.println("performing initial setup of WebDriver");
-        //String browserName=name;
+	public void initialSetUp1(String browserName) throws MalformedURLException {
         if(browserName.equalsIgnoreCase("CHROME")) {
-        	/*
-		String completeUrl="http://localhost:4444/wd/hub";
-        	DesiredCapabilities dc=new DesiredCapabilities();
+			System.out.println(">>>>>>>>>>>>>>>>>>>>RUNNING ON CHROME<<<<<<<<<<<<<<<<<<<<");
+			WebDriverManager.chromedriver().setup();
+			DesiredCapabilities dc=new DesiredCapabilities();
 	        dc.setBrowserName("chrome");
-
 	        ChromeOptions options=new ChromeOptions();
+			options.addArguments("--no-sandbox");
+			options.addArguments("--headless");
 	        options.merge(dc);
-	        
-	        driver=new RemoteWebDriver(new URL(completeUrl), options);
-		*/
-		System.out.println(">>>>>>>>>>>>>>>>>>>>RUNNING ON CHROME<<<<<<<<<<<<<<<<<<<<");
-		WebDriverManager.chromedriver().setup();
-		DesiredCapabilities dc=new DesiredCapabilities();
-                dc.setBrowserName("chrome");
-
-                ChromeOptions options=new ChromeOptions();
-		options.addArguments("--no-sandbox");
-		options.addArguments("--headless");
-                options.merge(dc);
-		driver=new ChromeDriver(options);
-
+			driver=new RemoteWebDriver(new URL(completeURL), options);
         }
         else if(browserName.equalsIgnoreCase("FIREFOX")) {
-		/*
-        	String completeUrl="http://localhost:4545/wd/hub";
-        	DesiredCapabilities dc=new DesiredCapabilities();
+			System.out.println(">>>>>>>>>>>>>>>>>>>>RUNNING ON FIREFOX<<<<<<<<<<<<<<<<<<<<");
+	        WebDriverManager.firefoxdriver().setup();
+	        DesiredCapabilities dc=new DesiredCapabilities();
 	        dc.setBrowserName("firefox");
-
 	        FirefoxOptions options=new FirefoxOptions();
-	        options.merge(dc);  
-	        
-	        driver=new RemoteWebDriver(new URL(completeUrl), options);
-        	*/
-		System.out.println(">>>>>>>>>>>>>>>>>>>>RUNNING ON FIREFOX<<<<<<<<<<<<<<<<<<<<");
-                WebDriverManager.firefoxdriver().setup();
-                DesiredCapabilities dc=new DesiredCapabilities();
-                dc.setBrowserName("firefox");
-
-                FirefoxOptions options=new FirefoxOptions();
-		options.addArguments("--no-sandbox");
-                options.addArguments("--headless");
-                options.merge(dc);
-                driver=new FirefoxDriver(options);
+	        options.addArguments("--no-sandbox");
+	        options.addArguments("--headless");
+	        options.merge(dc);
+	        driver=new RemoteWebDriver(new URL(completeURL), options);
 
         }
         else {
