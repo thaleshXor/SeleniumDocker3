@@ -20,7 +20,7 @@ pipeline {
 
         stage('firefox') {
           agent {
-            label 'master'
+            label 'ubuntu'
           }
           steps {
             sh 'mvn test -DBROWSER=firefox -DvarTestng=testng.xml'
