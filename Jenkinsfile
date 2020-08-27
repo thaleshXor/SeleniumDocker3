@@ -10,20 +10,20 @@ pipeline {
     stage('execution') {
       parallel {
         stage('chrome') {
+          agent {
+            label 'ubuntu3'
+          }
           steps {
-            node(label: 'ubuntu3') {
-              sh 'mvn test -DBROWSER=chrome -DvarTestng=testng.xml'
-            }
-
+            sh 'test -DBROWSER=chrome -DvarTestng=testng.xml'
           }
         }
 
         stage('firefox') {
+          agent {
+            label 'master'
+          }
           steps {
-            node(label: 'master') {
-              sh 'mvn test -DBROWSER=firefox -DvarTestng=testng.xml'
-            }
-
+            sh 'test -DBROWSER=firefox -DvarTestng=testng.xml'
           }
         }
 
