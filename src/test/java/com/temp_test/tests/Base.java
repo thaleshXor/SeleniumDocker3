@@ -39,11 +39,13 @@ public class Base {
 	        
 	        driver=new RemoteWebDriver(new URL(completeUrl), options);
 		*/
+		System.out.println(">>>>>>>>>>>>>>>>>>>>RUNNING ON CHROME<<<<<<<<<<<<<<<<<<<<");
 		WebDriverManager.chromedriver().setup();
 		DesiredCapabilities dc=new DesiredCapabilities();
                 dc.setBrowserName("chrome");
 
                 ChromeOptions options=new ChromeOptions();
+		options.addArguments("--no-sandbox");
 		options.addArguments("--headless");
                 options.merge(dc);
 		driver=new ChromeDriver(options);
@@ -60,12 +62,13 @@ public class Base {
 	        
 	        driver=new RemoteWebDriver(new URL(completeUrl), options);
         	*/
-
+		System.out.println(">>>>>>>>>>>>>>>>>>>>RUNNING ON FIREFOX<<<<<<<<<<<<<<<<<<<<");
                 WebDriverManager.firefoxdriver().setup();
                 DesiredCapabilities dc=new DesiredCapabilities();
                 dc.setBrowserName("firefox");
 
                 FirefoxOptions options=new FirefoxOptions();
+		options.addArguments("--no-sandbox");
                 options.addArguments("--headless");
                 options.merge(dc);
                 driver=new FirefoxDriver(options);
