@@ -14,7 +14,7 @@ pipeline {
             label 'ubuntu3'
           }
           steps {
-            sh 'test -DBROWSER=chrome -DvarTestng=testng.xml'
+            sh 'mvn test -DBROWSER=chrome -DvarTestng=testng.xml'
           }
         }
 
@@ -23,7 +23,7 @@ pipeline {
             label 'master'
           }
           steps {
-            sh 'test -DBROWSER=firefox -DvarTestng=testng.xml'
+            sh 'mvn test -DBROWSER=firefox -DvarTestng=testng.xml'
           }
         }
 
