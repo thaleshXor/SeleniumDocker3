@@ -40,7 +40,7 @@
     </test>
     
       <test name="set4 PopularProductsURL">
-        
+        <parameter name="browserName" value="firefox"/>
         <parameter name="url1" value="title:=samsung;url:=https://www.samsung.com/in/"/>
         <parameter name="url2" value="title:=Apple;url:=https://www.apple.com/"/>
         <parameter name="url3" value="title:=dell;url:=https://www.dell.com/"/>
