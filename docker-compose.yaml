@@ -1,0 +1,22 @@
+version: "3"
+services
+  hub:
+    image: selenium/hub
+	ports:
+	  -	4444:4444
+	volumes:
+	  - /dev/shm:/dev/shm
+  chrome:
+    image: selenium/node-chrome
+    depends-on:
+      - hub
+    environment:
+      - HUB_HOST=hub
+  firefox:
+    image: selenium/node-firefox
+    depends-on:
+      - hub
+    environment:
+      - HUB_HOST=hub
+				
+						
