@@ -21,7 +21,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class Base {
     protected WebDriver driver;
 	//String browserName=System.getProperty("BROWSER");
-    String completeURL="http://104.155.149.14:4444/wd/hub";
+    String completeURL="http://34.122.0.237:4444/wd/hub";
     //-------------------------------------------RUN ON  Agent Node------------------------------------------
    
     @Parameters({"browserName"})
