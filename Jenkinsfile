@@ -11,7 +11,7 @@ stages{
 		
 		steps{
 			echo '>>>>>>>>>>>>>>>>>>>>>>>'
-			sh 'docker-compose up'
+			sh 'docker-compose up -d'
 			sh 'mvn test -DvarTestng="testng.xml"'
 			sh 'docker-compose down'
 		}
